@@ -1,0 +1,47 @@
+kafka:
+  topic: raw_events
+  bootstrap_servers: localhost:9092
+
+producer:
+  # How long to stream messages (in seconds). Set to 0 to run indefinitely.
+  duration_seconds: 120
+
+  # Burst mode: "uniform" sends at a fixed interval, "random" sends at random intervals.
+  burst_mode: random
+
+  # Used when burst_mode=uniform — delay between messages (milliseconds)
+  uniform_interval_ms: 500
+
+  # Used when burst_mode=random — random delay range (milliseconds)
+  random_min_ms: 100
+  random_max_ms: 2000
+
+# Message schema — each key is a field name.
+# Use "faker_provider" to specify the Faker method to call.
+# Additional keys (besides "faker_provider") are passed as keyword arguments to that Faker method.
+schema:
+  user_id:
+    faker_provider: uuid4
+
+  name:
+    faker_provider: name
+
+  email:
+    faker_provider: email
+
+  event_type:
+    faker_provider: random_element
+    elements:
+      - click
+      - view
+      - purchase
+      - scroll
+
+  amount:
+    faker_provider: pydecimal
+    left_digits: 4
+    right_digits: 2
+    positive: true
+
+  timestamp:
+    faker_provider: iso8601
