@@ -101,8 +101,7 @@ def main():
                 payload = json.loads(msg.value().decode("utf-8"))
                 cursor.execute(INSERT_SQL, (json.dumps(payload),))
                 inserted += 1
-                if inserted % 100 == 0:
-                    log.info("Rows inserted so far: %d", inserted)
+                log.info("Rows inserted so far: %d", inserted)
             except (json.JSONDecodeError, psycopg2.Error) as e:
                 log.error("Failed to process message: %s", e)
 

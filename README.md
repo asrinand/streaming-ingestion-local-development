@@ -1,4 +1,4 @@
-# 🚀 Streaming Ingestion — Local Dev Suite
+# Streaming Ingestion — Local Dev Suite
 
 A hybrid local pipeline that generates fake data with Python → publishes it to **Kafka** → consumes it and stores every message in **PostgreSQL**. The infrastructure runs in Docker while the producer and consumer run as standalone Python scripts.
 
